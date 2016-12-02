@@ -20,7 +20,7 @@ Requirements
 * [Sparkfun TSL2561 library](https://github.com/sparkfun/SparkFun_TSL2561_Arduino_Library)
 * "Minimal circuit" hardware configuration from [Arduino website](https://www.arduino.cc/en/Tutorial/ArduinoToBreadboard)*
 * chip programmer* (like USBap)
-* serial converter* (some USB TTL Serial)
+* serial converter* (like USB TTL Serial)
 
 *) Only if you are going to used it with provided PCB board
 
@@ -56,7 +56,7 @@ Configuring the module
 [screen z terminalu]
  
 
-** Available commands **
+**Available commands**
 
 |  Key  | Description                                                                                | Expected value     | Note                                                                                             |
 |-------|--------------------------------------------------------------------------------------------|--------------------|--------------------------------------------------------------------------------------------------|
@@ -84,3 +84,51 @@ When you exit setup mode, the module will start its normal work cycle and will p
 When you power on the module and do not enter setup mode, serial terminal will be disabled.
 
 [screen z terminalu]
+
+
+Radio message format
+--------------------
+
+Communication between a module and a server is passive. Module only sends messages and server only receives messages.
+Each message has the same format described by [`struct readings_t`](./sensor/sensor.h):
+
+| Byte(s) | Type                    | Description                                                                          |
+|---------|-------------------------|--------------------------------------------------------------------------------------|
+|  0      | 8-bit unsigned integer  | Device ID                                                                            |
+|  1-2    | 16-bit unsigned integer | Subsequent message number                                                            |
+|  3      | 8-bit unsigned integer  | Flags (described below)                                                              | 
+|  4      | 8-bit unsigned integer  | Status (described below)                                                             | 
+|  5-6    | 16-bit signed integer   | Temperature in °C reported by BMP180 and multiplied by 100 (*1276* means *12.76 °C*) |
+|  7-10   | 32-bit float            | Absolute pressure in hPa reported by BMP180                                          |
+|  11-14  | 32-bit float            | Relative pressure in hPa reported by BMP180                                          |
+|  15-18  | 32-bit float            | Illumination in lux reported by TSL2561                                              |
+|  19-20  | 16-bit signed integer   | Temperature in °C reported by HTU21 and multiplied by 100 (*1276* means *12.76 °C*)  |
+|  21-22  | 16-bit unsigned integer | Humidity in percent reported by HTU21 and multiplied by 100 (*6276* means *62.76 %*) |
+|  23-24  | 16-bit unsigned integer | VCC voltage in V multiplied by 100 (*412* means *4.12 V*)                            |
+|  25-26  | 16-bit unsigned integer | Regulated voltage in V multiplied by 100 (*272* means *2.72 V*)                      |
+
+
+Flags
+-----
+
+| Bitmask | Constant name  | Description                               |
+|---------|----------------|-------------------------------------------|
+|  0x01   | ENABLE_BMP180  | Present if BMP180 is enabled for module.  |
+|  0x02   | ENABLE_TSL2561 | Present if TSL2561 is enabled for module. | 
+|  0x04   | ENABLE_HTU21   | Present if HTU21 is enabled for module.   | 
+
+
+Statuses
+--------
+
+| Bitmask | Constant name             | Description                                 |
+|---------|---------------------------|---------------------------------------------|
+|  0x00   |                           | Everything  fine - no error.                |
+|  0x01   | BAROMETER_ERR_INIT        | BMP180 initialization error.                |
+|  0x02   | BAROMETER_ERR_TEMP_START  | BMP180 temperate measurement request error. | 
+|  0x04   | BAROMETER_ERR_TEMP_READ   | BMP180 temperate measurement error.         | 
+|  0x08   | BAROMETER_ERR_PRESS_START | BMP180 pressure measurement request error.  | 
+|  0x10   | BAROMETER_ERR_PRESS_READ  | BMP180 pressure measurement error.          | 
+|  0x20   | LIGHT_ERR_READ            | TSL2561 illumination measurement error.     | 
+|  0x30   | LIGHT_ERR_RANGE           | TSL2561 measurement out of range.           | 
+|  0x40   | STATUS_ERR_HUM            | HTU21 measurement error.                    | 
