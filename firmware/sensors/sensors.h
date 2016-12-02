@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-#define PIN_POWER 3
+#define PIN_POWER     3
 #define PIN_RADIO_CE  7
 #define PIN_RADIO_CSN 8
 
@@ -20,7 +20,7 @@ struct options_t {
     uint8_t  flags;          //sensors enabling flags
     float    vbat_correct;   //VBAT correction
     float    vreg_correct;   //VREG correction
-    uint16_t altitude;       //altitude in meteres (for BMP180)
+    uint16_t altitude;       //altitude in meters (for BMP180)
 };
 
 struct readings_t {
@@ -29,8 +29,8 @@ struct readings_t {
     uint8_t  flags;          //flags (from options)
     uint8_t  status;         //reading status
     int16_t  bar_temp;       //[BMP180] temperature (°C * 100)
-    double   bar_pres_abs;   //[BMP180] absolute presure (hPa)
-    double   bar_pres_rel;   //[BMP180] relative presure (hPa)
+    double   bar_pres_abs;   //[BMP180] absolute pressure (hPa)
+    double   bar_pres_rel;   //[BMP180] relative pressure (hPa)
     double   light_lux;      //[TSL2561] illumination (lux)
     int16_t  htu_temp;       //[HTU21] temperature (°C * 100)
     uint16_t htu_hum;        //[HTU21] humidity (% * 100)

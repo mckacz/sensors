@@ -22,18 +22,18 @@ class RadioFlags:
     #BMP180
     BAROMETER_ERR_INIT = 1         #initialization error
     BAROMETER_ERR_TEMP_START = 2   #temperature measurement request error
-    BAROMETER_ERR_TEMP_READ = 3    #temperature measurement read error
-    BAROMETER_ERR_PRESS_START = 4  #presure measurement request error
-    BAROMETER_ERR_PRESS_READ = 5   #presure measurement read error
+    BAROMETER_ERR_TEMP_READ = 4    #temperature measurement read error
+    BAROMETER_ERR_PRESS_START = 8  #presure measurement request error
+    BAROMETER_ERR_PRESS_READ = 16   #presure measurement read error
     BAROMETER_ERR = BAROMETER_ERR_INIT | BAROMETER_ERR_TEMP_START | BAROMETER_ERR_TEMP_READ | BAROMETER_ERR_PRESS_START | BAROMETER_ERR_PRESS_READ
 
     #TSL2561
-    LIGHT_ERR_READ = 8   #measurement read error
-    LIGHT_ERR_RANGE = 9  #measurement out of range error
+    LIGHT_ERR_READ = 32   #measurement read error
+    LIGHT_ERR_RANGE = 64  #measurement out of range error
     LIGHT_ERR = LIGHT_ERR_READ | LIGHT_ERR_RANGE
 
     #HTU21
-    HUM_ERR = 16 #generic error
+    HUM_ERR = 128 #generic error
 
 
 class RadioThread(Thread):

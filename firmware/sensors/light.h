@@ -5,8 +5,8 @@
 
 #define LIGHT_TIME 2   // light sensor integration time 402ms
 
-#define LIGHT_ERR_READ  8
-#define LIGHT_ERR_RANGE 9
+#define LIGHT_ERR_READ  32
+#define LIGHT_ERR_RANGE 16
 
 extern void light_begin();
 extern void light_read(readings_t &readings);

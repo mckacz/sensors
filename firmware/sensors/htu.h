@@ -3,7 +3,7 @@
 
 #include "sensors.h"
 
-#define STATUS_ERR_HUM 16
+#define HUM_READ_ERR 128
 
 extern void htu_begin();
 extern void htu_read(readings_t &readings);
