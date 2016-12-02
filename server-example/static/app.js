@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var client = new _client.Client('ws://' + self.location.host + '/ws');
 
 var host = document.getElementById('app');
-var dashboard = ReactDOM.render(React.createElement(_dashboard2.default, { client: client }), host);
+ReactDOM.render(React.createElement(_dashboard2.default, { client: client }), host);
 
 },{"./client.js":2,"./ui/dashboard.jsx":3}],2:[function(require,module,exports){
 'use strict';
