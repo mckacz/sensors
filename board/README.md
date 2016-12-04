@@ -1,5 +1,5 @@
-Wireless sensor module
-======================
+Wireless sensor module board
+============================
 
 This directory contains schematic and PCB design for single wireless sensor module in [EAGLE](https://cadsoft.io/) 
 format. Board design is also available on [EasyEDA](https://easyeda.com/maciej/sensors-387a7c4150d841bbb06d5350ea664e67).  
@@ -10,7 +10,7 @@ format. Board design is also available on [EasyEDA](https://easyeda.com/maciej/s
  * supports standard BMP180, HTU21D and TSL2561 breakout boards - min. one is required, but all can be installed at same time 
  * input voltage from 3 to 5.5V 
  * low cost
- 
+ * open source [firmware](../firmware) 
 
 Part list
 ---------
@@ -39,10 +39,9 @@ Top layer
 ---------
 
 ![Top layer](./images/pcb-top.png)
+
  
 Bottom layer
 ------------
 
 ![Bottom layer](./images/pcb-bottom.png)
-
-

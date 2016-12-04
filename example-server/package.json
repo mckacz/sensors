@@ -1,5 +1,5 @@
 {
-  "name": "sensors",
+  "name": "example-sensors-server",
   "version": "0.1.0",
   "description": "Sensors server example",
   "main": "server.py",

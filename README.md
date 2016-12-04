@@ -15,7 +15,7 @@ List of contents
 |------------------------------------|--------------------------------------------------------|
 | [board](./board)                   | Schematic and PCB design of wireless sensor module     |
 | [firmware](./firmware)             | Arduino-compatible firmware for wireless sensor module |
-| [server-example](./server-example) | Simple wireless sensors server for Raspberry PI        | 
+| [example-server](./example-server) | Simple wireless sensors server for Raspberry PI        | 
 
 
 License

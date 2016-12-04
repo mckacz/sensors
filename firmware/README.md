@@ -90,7 +90,7 @@ Radio message format
 --------------------
 
 Communication between a module and a server is passive. Module only sends messages and server only receives messages.
-Each message has the same format described by [`struct readings_t`](./sensor/sensor.h):
+Each message has the same format described by [`struct readings_t`](./sensors/sensor.h):
 
 | Byte(s) | Type                    | Description                                                                          |
 |---------|-------------------------|--------------------------------------------------------------------------------------|

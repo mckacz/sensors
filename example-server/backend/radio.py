@@ -20,20 +20,20 @@ class RadioFlags:
     #Status codes
 
     #BMP180
-    BAROMETER_ERR_INIT = 1         #initialization error
-    BAROMETER_ERR_TEMP_START = 2   #temperature measurement request error
-    BAROMETER_ERR_TEMP_READ = 4    #temperature measurement read error
-    BAROMETER_ERR_PRESS_START = 8  #presure measurement request error
-    BAROMETER_ERR_PRESS_READ = 16   #presure measurement read error
-    BAROMETER_ERR = BAROMETER_ERR_INIT | BAROMETER_ERR_TEMP_START | BAROMETER_ERR_TEMP_READ | BAROMETER_ERR_PRESS_START | BAROMETER_ERR_PRESS_READ
+    BMP180_ERR_INIT = 1          #initialization error
+    BMP180_ERR_TEMP_START = 2    #temperature measurement request error
+    BMP180_ERR_TEMP_READ = 4     #temperature measurement read error
+    BMP180_ERR_PRESS_START = 8   #presure measurement request error
+    BMP180_ERR_PRESS_READ = 16   #presure measurement read error
+    BMP180_ERR = BMP180_ERR_INIT | BMP180_ERR_TEMP_START | BMP180_ERR_TEMP_READ | BMP180_ERR_PRESS_START | BMP180_ERR_PRESS_READ
 
     #TSL2561
-    LIGHT_ERR_READ = 32   #measurement read error
-    LIGHT_ERR_RANGE = 64  #measurement out of range error
-    LIGHT_ERR = LIGHT_ERR_READ | LIGHT_ERR_RANGE
+    TSL2561_ERR_READ = 32   #measurement read error
+    TSL2561_ERR_RANGE = 64  #measurement out of range error
+    TSL2561_ERR = TSL2561_ERR_READ | TSL2561_ERR_RANGE
 
     #HTU21
-    HUM_ERR = 128 #generic error
+    HTU21_ERR = 128 #generic error
 
 
 class RadioThread(Thread):
@@ -121,16 +121,16 @@ class RadioThread(Thread):
         record['vbat'] /= 100
         record['vreg'] /= 100
 
-        if not (record['flags'] & RadioFlags.ENABLE_BMP180):
+        if not (record['flags'] & RadioFlags.ENABLE_BMP180) or (record['status'] & RadioFlags.BMP180_ERR):
             record['bar_temp'] = None
             record['bar_pres_abs'] = None
             record['bar_pres_rel'] = None
 
-        if not (record['flags'] & RadioFlags.ENABLE_HTU21):
+        if not (record['flags'] & RadioFlags.ENABLE_HTU21) or (record['status'] & RadioFlags.HTU21_ERR):
             record['hum_temp'] = None
             record['hum_hum'] = None
 
-        if not (record['flags'] & RadioFlags.ENABLE_TSL2561):
+        if not (record['flags'] & RadioFlags.ENABLE_TSL2561) or (record['status'] & RadioFlags.TSL2561_ERR):
             record['lux'] = None
 
         self.dispatcher.trigger('new_reading', self, record=record)
