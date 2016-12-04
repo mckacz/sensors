@@ -7,7 +7,7 @@ This is example of server that listens for readings send by wireless modules.
 **Hardware requirements**
 
 * Raspberry PI with enabled SPI
-* NRF24L01 radio module
+* NRF24L01+ radio module connected to Raspberry PI
 * at least one [wireless sensor module](../board) with proper [firmware](../firmware)
 
 

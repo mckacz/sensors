@@ -5,7 +5,7 @@ This directory contains schematic and PCB design for single wireless sensor modu
 format. Board design is also available on [EasyEDA](https://easyeda.com/maciej/sensors-387a7c4150d841bbb06d5350ea664e67).  
 
 **Features**:
- * small dimensions - 55x45 mm
+ * small dimensions - 55x45mm
  * low power consumption - ~40mA during measurement and ~40µA (0.04mA) in standby
  * supports standard BMP180, HTU21D and TSL2561 breakout boards - min. one is required, but all can be installed at same time 
  * input voltage from 3 to 5.5V 
@@ -18,7 +18,7 @@ Part list
 | PCB ID | Part name            | Qty | Description                     |
 |--------|----------------------|-----|---------------------------------|
 | U1     | ATmega328P (DIL28)   |  1  | microcontroller                 |
-| U2     | LD117AV33 (TO220)    |  1  | voltage regulator               |
+| U2     | LD1117AV33 (TO220)   |  1  | voltage regulator               |
 | U3     | NRF24L01+            |  1  | radio module                    |
 | U4     | HTU21D (breakboard)  |  1  | temperature and humidity sensor | 
 | U5/U6* | TSL2561 (breakboard) |  1  | luminescence sensor             | 
@@ -45,3 +45,9 @@ Bottom layer
 ------------
 
 ![Bottom layer](./images/pcb-bottom.png)
+
+
+Assembled board
+---------------
+
+![Wireless sensor module](./images/assembled.jpg)

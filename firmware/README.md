@@ -3,12 +3,11 @@ Wireless sensor module firmware
 
 **Features**:
 
-* well-commented
-* easy to extend
 * configurable through serial terminal
 * optimized for power consumption (deep sleep mode)
 * monitors actual voltage values
 * compatible with ATmega328P @ 16MHz / 8MHz 
+* easy to extend
 
 
 Requirements
@@ -31,7 +30,7 @@ Installing on ATmega328p
 1. prepare ATmega328p chip fused to run at 8Mhz internal oscillator
 2. install required libraries through Arduino IDE's library manager 
 3. compile and upload sketch to ATmega328p using your favourite chip programmer 
-4. put programmed ATmega328p into socket on the board. 
+4. put programmed ATmega328p into socket on the board
 
 
 Configuring the module
@@ -39,21 +38,19 @@ Configuring the module
 
 1. power off the board
 2. connect serial converter to JP2 connector on the board
-3. setup up and open serial connection 
+3. setup and open serial connection 
   
   * boud rate: 19200
   * parity: none
   * bits: 8
   * stopbits: 1
   * flow control: none
-  * echo: off
   * immediate send characters 
   
 4. power on the board
 5. within next 5 seconds, press any key in serial terminal to enter setup mode
 
-
-[screen z terminalu]
+![Screenshot 1](./images/screenshot1.png)
  
 
 **Available commands**
@@ -75,7 +72,7 @@ Configuring the module
 | **S** | Write settings to EEPROM.                                                                  |                    |                                                                                                  |
 | **X** | Exit setup mode.                                                                           |                    |                                                                                                  |
  
-Each next digit of value that you entering must be entered within 5 seconds after previous one.
+First and each next digit of value that you entering must be entered within 5 seconds after previous one.
 Each number can be ended/confirmed by any non-digit character (or you can wait 5 seconds). 
 If selected command requires a few numbers, then separate them with any non-digit character.
 Floating-point number can be entered as usual - with dot between digits. 
@@ -83,14 +80,14 @@ Floating-point number can be entered as usual - with dot between digits.
 When you exit setup mode, the module will start its normal work cycle and will print on serial terminal current measurements.
 When you power on the module and do not enter setup mode, serial terminal will be disabled.
 
-[screen z terminalu]
+![Screenshot 2](./images/screenshot2.png)
 
 
 Radio message format
 --------------------
 
 Communication between a module and a server is passive. Module only sends messages and server only receives messages.
-Each message has the same format described by [`struct readings_t`](./sensors/sensor.h):
+Each message has the same format described by [`struct readings_t`](./sensors/sensors.h):
 
 | Byte(s) | Type                    | Description                                                                          |
 |---------|-------------------------|--------------------------------------------------------------------------------------|
@@ -131,4 +128,4 @@ Statuses
 |  0x10   | BAROMETER_ERR_PRESS_READ  | BMP180 pressure measurement error.          | 
 |  0x20   | LIGHT_ERR_READ            | TSL2561 illumination measurement error.     | 
 |  0x30   | LIGHT_ERR_RANGE           | TSL2561 measurement out of range.           | 
-|  0x40   | STATUS_ERR_HUM            | HTU21 measurement error.                    | 
+|  0x40   | HUM_READ_ERR              | HTU21 measurement error.                    | 
